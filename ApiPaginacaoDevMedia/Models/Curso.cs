@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
+namespace ApiPaginacaoDevMedia.Models
+{
+    [Table("Cursos")]
+    public class Curso
+    {
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "O título do curso deve ser preenchido.")]
+        [MaxLength(100, ErrorMessage = "O titulo do curso só pode conter até 100 caracteres.")]
+        public string Titulo { get; set; }
+
+        [Required(ErrorMessage = "A URL do curso deve ser preenchido.")]
+        [Url(ErrorMessage = "A URL do curso deve conter um endereço válido")]
+        public string URL { get; set; }
+
+        [Required(ErrorMessage = "O canal do curso deve ser preenchido.")]
+        public Canal Canal { get; set; }
+
+        [Required(ErrorMessage = "A data de publicação do curso deve ser preenchido.")]
+        [DisplayFormat(DataFormatString = "dd/MM/yyy")]
+        public DateTime DataPublicacao { get; set; }
+
+        [Required(ErrorMessage = "A carga horária do curso deve ser preenchido.")]
+        [Range(1, Int32.MaxValue, ErrorMessage = "A carga horária deve ser de pelo menos 1h")]
+        public int CargaHoraria { get; set; }
+    }
+}
