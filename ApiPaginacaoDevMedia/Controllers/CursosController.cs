@@ -55,5 +55,23 @@ namespace ApiPaginacaoDevMedia.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        public IHttpActionResult DeleteCurso(int id)
+        {
+            if (id <= 0)
+                return BadRequest("O id deve ser um número maior que zero.");
+
+            var curso = db.Cursos.Find(id);
+
+            if (curso == null)
+                return NotFound();
+
+            db.Cursos.Remove(curso);
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+
+
+        }
+
     }
 }
