@@ -70,8 +70,15 @@ namespace ApiPaginacaoDevMedia.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
 
-
         }
+
+        public IHttpActionResult GetCursos()
+        {
+            var cursos = db.Cursos.OrderBy(c => c.DataPublicacao); //Expressão Lambda
+
+            return Ok(cursos);
+        }
+        
 
     }
 }
