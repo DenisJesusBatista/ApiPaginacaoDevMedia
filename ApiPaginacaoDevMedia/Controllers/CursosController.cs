@@ -30,7 +30,10 @@ namespace ApiPaginacaoDevMedia.Controllers
                 return BadRequest("O id deve ser um número maior que zero.");
 
             var curso = db.Cursos.Find(id);
-            return NotFound();
+
+            if (curso == null)
+                return NotFound();
+
 
             return Ok(curso);
         }
