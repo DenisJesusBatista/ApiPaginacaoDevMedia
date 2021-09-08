@@ -38,5 +38,22 @@ namespace ApiPaginacaoDevMedia.Controllers
             return Ok(curso);
         }
 
+        public IHttpActionResult PutCurso(int id, Curso curso)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (id != curso.Id)
+                return BadRequest("O id informado na URL é diferente do id informado no corpo da requisição.");
+
+            if (db.Cursos.Count(c => c.Id == id) == 0)
+                return NotFound();
+
+            db.Entry(curso).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
     }
 }
