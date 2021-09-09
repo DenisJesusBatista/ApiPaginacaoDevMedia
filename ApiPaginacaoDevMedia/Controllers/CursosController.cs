@@ -72,9 +72,9 @@ namespace ApiPaginacaoDevMedia.Controllers
 
         }
 
-        public IHttpActionResult GetCursos()
+        public IHttpActionResult GetCursos(int pagina  = 1 , int tamanhoPagina = 10)
         {
-            var cursos = db.Cursos.OrderBy(c => c.DataPublicacao); //Expressão Lambda
+            var cursos = db.Cursos.OrderBy(c => c.DataPublicacao).Skip(tamanhoPagina * (pagina - 1)).Take(tamanhoPagina); //Expressão Lambda
 
             return Ok(cursos);
         }
