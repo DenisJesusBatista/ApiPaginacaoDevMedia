@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,6 +23,7 @@ namespace ApiPaginacaoDevMedia.Models
         public string URL { get; set; }
 
         [Required(ErrorMessage = "O canal do curso deve ser preenchido.")]
+        [JsonConverter(typeof(StringEnumConverter))]
         public Canal Canal { get; set; }
 
         [Required(ErrorMessage = "A data de publicação do curso deve ser preenchido.")]
