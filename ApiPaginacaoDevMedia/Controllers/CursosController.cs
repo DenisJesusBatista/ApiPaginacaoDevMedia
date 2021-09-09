@@ -85,6 +85,16 @@ namespace ApiPaginacaoDevMedia.Controllers
             if (pagina > totalPaginas)
                 return BadRequest("A página solicitada não existe.");
 
+            System.Web.HttpContext.Current.Response.AddHeader("X-Pagination-TotalPages", totalPaginas.ToString());
+
+            if (pagina > 1)
+                System.Web.HttpContext.Current.Response.AddHeader("X-Pagination-PreviousPage", 
+                    Url.Link("DefaultApi", new { pagina = pagina - 1, tamanhoPagina = tamanhoPagina }));
+
+            if (pagina < totalPaginas)
+                System.Web.HttpContext.Current.Response.AddHeader("X-Pagination-NextPage",
+                    Url.Link("DefaultApi", new { pagina = pagina + 1, tamanhoPagina = tamanhoPagina }));
+
             var cursos = db.Cursos.OrderBy(c => c.DataPublicacao).Skip(tamanhoPagina * (pagina - 1)).Take(tamanhoPagina); //Expressão Lambda
 
             return Ok(cursos);
