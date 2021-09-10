@@ -10,6 +10,7 @@ namespace ApiPaginacaoDevMedia.Models
     {
         public DevMediaContext() : base("DevMediaLocalDb")
         {
+            Database.Log = d => System.Diagnostics.Debug.WriteLine(d);
 
         }
 
