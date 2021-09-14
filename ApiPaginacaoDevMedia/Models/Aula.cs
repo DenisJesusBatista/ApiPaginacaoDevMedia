@@ -9,7 +9,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApiPaginacaoDevMedia.Models
 {
-    public class Aula
+    [Table("Aula")]
+	public class Aula
     {
         [Required(ErrorMessage ="O ttitulo da aula deve ser preenchido.")]
         [MaxLength(50, ErrorMessage ="Otitulo da aula deve ter até 50 caracteres.")]

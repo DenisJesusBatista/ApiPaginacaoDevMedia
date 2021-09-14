@@ -17,7 +17,7 @@ namespace ApiPaginacaoDevMedia
             config.Routes.MapHttpRoute(
                 name: "Aulas",
                 routeTemplate: "api/cursos/{idCurso}/aulas",
-                defaults: new { controller =  "Aulas"}
+                defaults: new { controller = "Aulas" }
                 );
 
             config.Routes.MapHttpRoute(
