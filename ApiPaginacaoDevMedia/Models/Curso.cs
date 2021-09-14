@@ -34,7 +34,7 @@ namespace ApiPaginacaoDevMedia.Models
         [Range(1, Int32.MaxValue, ErrorMessage = "A carga horária deve ser de pelo menos 1h")]
         public int CargaHoraria { get; set; }
 
-        [JsonIgnore]
-        public virtual ICollection<Aula> Aulas { get; set; }
+        //[JsonIgnore]
+        //public virtual ICollection<Aula> Aulas { get; set; }
     }
 }
