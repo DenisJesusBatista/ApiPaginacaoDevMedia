@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApiPaginacaoDevMedia.Models
 {
-    [Table("Aula")]
+    [Table("Aulas")]
 	public class Aula
     {
         [Required(ErrorMessage ="O ttitulo da aula deve ser preenchido.")]

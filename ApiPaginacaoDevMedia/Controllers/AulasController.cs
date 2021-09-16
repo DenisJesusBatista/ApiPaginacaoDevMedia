@@ -21,10 +21,10 @@ namespace ApiPaginacaoDevMedia.Controllers
             if (curso == null)
                 return NotFound();
 
-            return Ok("Ok");
-                
+            //return Ok("Ok");
 
-            //return Ok(curso.Aulas.OrderBy(a => a.Ordem).ToList());
+
+            return Ok(curso.Aulas.OrderBy(a => a.Ordem).ToList());
 
 
         }
