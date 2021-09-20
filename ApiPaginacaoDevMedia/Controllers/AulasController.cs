@@ -12,6 +12,7 @@ namespace ApiPaginacaoDevMedia.Controllers
     {
         private DevMediaContext db = new DevMediaContext();
 
+        #region GetAulas      
         public IHttpActionResult GetAulas(int idCurso)
         {
             //Localiza o curso
@@ -28,5 +29,28 @@ namespace ApiPaginacaoDevMedia.Controllers
 
 
         }
+        #endregion
+
+        #region GetAula
+        public IHttpActionResult GetAula(int idCurso, int ordemAula)
+        {
+            //Localiza o curso
+            var curso = db.Cursos.Find(idCurso);
+
+            //404 - Curso não encontrado
+            if (curso == null)
+                return NotFound();
+
+            //Localiza a aula
+
+            var aula = curso.Aulas.FirstOrDefault(a => a.Ordem == ordemAula);
+
+            //404 - Aula não encontrada
+            if (aula == null)
+                return NotFound();
+
+            return Ok(aula);
+        }
+        #endregion
     }
 }

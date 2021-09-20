@@ -22,7 +22,7 @@ namespace ApiPaginacaoDevMedia.Models
 
 
         [JsonIgnore]
-        [ForeignKey("Curso")]
+        [ForeignKey("Cursos")]
         public int IdCurso { get; set; }
 
         [JsonIgnore]
