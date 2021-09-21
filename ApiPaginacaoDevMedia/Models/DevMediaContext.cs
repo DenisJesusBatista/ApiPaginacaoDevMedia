@@ -11,10 +11,12 @@ namespace ApiPaginacaoDevMedia.Models
         public DevMediaContext() : base("DevMediaLocalDb")
         {
             //Database.CreateIfNotExists();
-            Database.Log = d => System.Diagnostics.Debug.WriteLine(d);
+            //Database.Log = d => System.Diagnostics.Debug.WriteLine(d);
+            //< !--connectionString = "Server=DESKTOP-1OGBH22\SQLEXPRESS;Database=DevMediaLocalDb;User ID=sa;Password=123456;" /> -->
 
         }
 
         public DbSet<Curso> Cursos { get; set; }
+        public DbSet<Aula> Aulas { get; set; }
     }
 }
