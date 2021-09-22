@@ -14,7 +14,7 @@ namespace ApiPaginacaoDevMedia.Models
     {
         [Required(ErrorMessage ="O ttitulo da aula deve ser preenchido.")]
         [MaxLength(50, ErrorMessage ="Otitulo da aula deve ter até 50 caracteres.")]
-        [MinLength(50, ErrorMessage ="O titulo da aula deve ter pelo menos 10 caracteres.")]
+        [MinLength(10, ErrorMessage ="O titulo da aula deve ter pelo menos 10 caracteres.")]
         public string Titulo { get; set; }
 
         [Range(1, Int32.MaxValue, ErrorMessage ="A ordem da aula deve ser maior que zero.")]

@@ -85,5 +85,43 @@ namespace ApiPaginacaoDevMedia.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
         #endregion
+
+        #region PostAula        
+        public IHttpActionResult PostAula(int idCurso, Aula aula)
+        {
+            // Localiza o curso
+            var curso = db.Cursos.Find(idCurso);
+
+            //404 - Curso não encontrado
+            if (curso == null)
+                return NotFound();
+
+            //400 - Dados inválidos
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            //Calcula a ordem da próxima aula a ser cadastrada ( última + 1 )
+            int proximaAula = curso.Aulas.Max(a => a.Ordem) + 1;
+
+            //Ordem inválida: adiciona no final
+            if (aula.Ordem > proximaAula)
+                aula.Ordem = proximaAula;
+
+            //Inserindo a aula no meio: desloca as demais aulas para baixo (aumenta a ordem)
+            else if (aula.Ordem < proximaAula)
+                curso.Aulas.Where(a => a.Ordem >= aula.Ordem)
+                    .ToList()
+                    .ForEach(a => a.Ordem++);
+
+            //Adiciona a nova aula
+            curso.Aulas.Add(aula);
+
+            //Grava as alterações
+            db.SaveChanges();
+
+            return CreatedAtRoute("Aulas", new { idCurso = idCurso, ordemAula = aula.Ordem }, aula);
+        }
+
+        #endregion
     }
 }
